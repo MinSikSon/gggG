@@ -117,7 +117,7 @@ public class Chart3 extends Activity {
 		mRenderer3_1.setXAxisMin(0.5);
 		mRenderer3_1.setXAxisMax(12.5);
 		mRenderer3_1.setYAxisMin(0);
-		mRenderer3_1.setYAxisMax(100);
+		mRenderer3_1.setYAxisMax(60);
 		
 		//mRenderer2.setPointSize(1.0f);
 	    mRenderer3_1.addSeriesRenderer(mCurrentRenderer3_1);
@@ -206,7 +206,7 @@ public class Chart3 extends Activity {
 		mRenderer3_2.setXAxisMin(12.5);
 		mRenderer3_2.setXAxisMax(24.5);
 		mRenderer3_2.setYAxisMin(0);
-		mRenderer3_2.setYAxisMax(100);
+		mRenderer3_2.setYAxisMax(60);
 		
 		//mRenderer2.setPointSize(1.0f);
 	    mRenderer3_2.addSeriesRenderer(mCurrentRenderer3_2);
