@@ -12,11 +12,11 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:screenOrientation="landscape"
         android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
         <activity
             android:name=".activities.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +25,20 @@
         </activity>
         <activity
             android:name="son.funkydj3.achartengine.Chart1"
-            android:label="@string/title_activity_chart1" >
+            android:label="@string/title_activity_chart1"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="son.funkydj3.achartengine.Chart2"
+            android:label="@string/title_activity_chart2" >
+        </activity>
+        <activity
+            android:name="son.funkydj3.achartengine.Chart3"
+            android:label="@string/title_activity_chart3" >
+        </activity>
+        <activity
+            android:name=".Chart_total"
+            android:label="@string/title_activity_chart_total" >
         </activity>
     </application>
 

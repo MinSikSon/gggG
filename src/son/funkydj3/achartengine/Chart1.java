@@ -2,7 +2,11 @@
  ref source) http://www.javaadvent.com/2012/12/achartengine-charting-library-for.html
  ref) http://www.programkr.com/blog/MQDN0ADMwYT3.html
  ref) http://www.achartengine.org/content/javadoc/index.html
+
+ problem) if landscape->portrait, data update isn't working.
 */
+
+
 
 package son.funkydj3.achartengine;
 
@@ -174,12 +178,14 @@ public class Chart1 extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chart1);
-		t1 = new Thread1(mHandler);
-		t1.start();
+		if(COUNT == 0){
+			t1 = new Thread1(mHandler);
+			t1.start();
+		}
 	}
 	Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
-			if(COUNT >= 150){
+			if(COUNT >= 20){
 				mCurrentRenderer.setColor(Color.rgb(255, 0, 0)); // * RED
 			}
 			// *error* mCurrentSeries.add(1,COUNT); 이렇게 하나만 해도, 나머지 값이 다 COUNT로 바뀐다
@@ -195,7 +201,8 @@ public class Chart1 extends Activity {
 			mCurrentSeries.add(10,COUNT+9);
 			mCurrentSeries.add(11,COUNT+10);
 			mCurrentSeries.add(12,COUNT+11);
-			if(mChart != null) mChart.repaint();
+			Log.d("SON", ""+COUNT);
+			if(mChart != null) mChart.repaint(); // *
 		}
 	};
 	
@@ -205,6 +212,7 @@ public class Chart1 extends Activity {
 		// * Study about "onResume()"
 		super.onResume();
 		LinearLayout layout = (LinearLayout)findViewById(R.id.chart1);
+		Log.d("SON", "" + mChart);
 		if(mChart == null){
 			InfoDisplay();
 			initChart();
