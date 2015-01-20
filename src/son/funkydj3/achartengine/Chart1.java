@@ -2,11 +2,8 @@
  ref source) http://www.javaadvent.com/2012/12/achartengine-charting-library-for.html
  ref) http://www.programkr.com/blog/MQDN0ADMwYT3.html
  ref) http://www.achartengine.org/content/javadoc/index.html
-
- problem) if landscape->portrait, data update isn't working.
+ display) width 480, 720, 1080
 */
-
-
 
 package son.funkydj3.achartengine;
 
@@ -32,22 +29,22 @@ import android.util.Log;
 import android.widget.LinearLayout;
 
 public class Chart1 extends Activity {
-	private GraphicalView mChart; // * Study about "GraphicalView"
+	public GraphicalView mChart; // * Study about "GraphicalView"
 	private XYSeries mCurrentSeries; // * series : set of numbers
 	private XYMultipleSeriesDataset mDataset = new XYMultipleSeriesDataset();
 	private SimpleSeriesRenderer mCurrentRenderer;
 	private XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
 	
-	public static int COUNT = 0;
 	
 	private void initChart(){
-		mCurrentSeries = new XYSeries("kWh");
+		mCurrentSeries = new XYSeries("WON");
 		mDataset.addSeries(mCurrentSeries);
 		
 		mCurrentRenderer = new XYSeriesRenderer();
-		mCurrentRenderer.setColor(Color.rgb(146, 208, 80)); // * GREEN
+		mCurrentRenderer.setColor(Color.rgb(18, 105, 120));
+		//mCurrentRenderer.setColor(Class_Color.GREEN()); // * GREEN
 		mCurrentRenderer.setDisplayChartValues(true);
-		mCurrentRenderer.setChartValuesTextAlign(Align.RIGHT);
+		mCurrentRenderer.setChartValuesTextAlign(Align.CENTER);
 		if(widthPixels <= 720){
 			mCurrentRenderer.setChartValuesTextSize(15);
 		}else if(widthPixels == 1080){
@@ -58,13 +55,13 @@ public class Chart1 extends Activity {
 
 		// double[] zoomlimits = new double[] {0,20,0,40}; // {zoomMinimumX, zoomMaximumX, zoomMinimumY, zoomMaximumY}
 		// mRenderer.setZoomLimits(zoomlimits);
-		mRenderer.setChartTitle("Graph of Power Rates");
+		mRenderer.setChartTitle("Year Electric Charge");
 		if(widthPixels <= 720){
 			mRenderer.setChartTitleTextSize(40);
 		}else if(widthPixels == 1080){
 			mRenderer.setChartTitleTextSize(80);
 		}
-		mRenderer.setLabelsColor(Color.YELLOW); // * "title + label"'s color
+		mRenderer.setLabelsColor(Color.BLACK); // * "title + label"'s color
 		if(widthPixels <= 720){
 			mRenderer.setLabelsTextSize(18);
 		}else if(widthPixels == 1080){
@@ -73,36 +70,37 @@ public class Chart1 extends Activity {
 		
 		int[] margins = new int[] {0,0,0,0}; // {top, left, bottom, right}
 		if(widthPixels <= 720){
-			margins = new int[] {50,30,0,0};
+			margins = new int[] {75,45,0,0};
 		}else if(widthPixels == 1080){ // 1080*1920
-			margins = new int[] {100,60,0,0};
+			margins = new int[] {150,90,0,0};
 		}
 		mRenderer.setMargins(margins);
-		mRenderer.setMarginsColor(Color.BLACK);
+		mRenderer.setMarginsColor(Color.WHITE);
 		
 		mRenderer.setApplyBackgroundColor(true);
-		//mRenderer.setBackgroundColor(Color.WHITE);
+		//mRenderer.setBackgroundColor(Color.rgb(255, 228, 0));
 		
-		//mRenderer.setShowGrid(true);
-		mRenderer.setShowGridX(true);
-		mRenderer.setGridColor(Color.GRAY);
 		
 		mRenderer.setPanEnabled(false, true); // * fix graph
-		double[] panLimits = new double[] {0,0,0,450};
+		double[] panLimits = new double[] {0,0,0,50000};
 		mRenderer.setPanLimits(panLimits);
 		mRenderer.setZoomEnabled(false, false); // * enable zoom
-		double[] range = new double[] {0,12,0,200};
+		double[] range = new double[] {0,12,0,40000};
 		mRenderer.setInitialRange(range);
 		mRenderer.setYLabelsAlign(Align.RIGHT);
 		mRenderer.setXTitle("Months");
-		mRenderer.setYTitle("kWh");
+		mRenderer.setYTitle("WON");
 		if(widthPixels <= 720){ // 720*1080
 			mRenderer.setAxisTitleTextSize(16);
 		}else if(widthPixels == 1080){ // 1080*1920
 			mRenderer.setAxisTitleTextSize(32);
 		}
-		mRenderer.setXLabels(0); // sets the number of integer labels to appear
-		mRenderer.addXTextLabel(0, "0");
+
+		
+		mRenderer.setShowGridX(true);
+		mRenderer.setGridColor(Color.rgb(93, 93, 93));
+		mRenderer.setXLabelsColor(Class_Color.BLACK());
+		mRenderer.setXLabels(24); // sets the number of integer labels to appear
 		mRenderer.addXTextLabel(1, "1");
 		mRenderer.addXTextLabel(2, "2");
 		mRenderer.addXTextLabel(3, "3");
@@ -116,23 +114,38 @@ public class Chart1 extends Activity {
 		mRenderer.addXTextLabel(11, "11");
 		mRenderer.addXTextLabel(12, "12");
 		
-		mRenderer.setXLabels(0);
-		mRenderer.addYTextLabel(50, "50");
-		mRenderer.addYTextLabel(100, "100");
-		mRenderer.addYTextLabel(150, "150");
-		mRenderer.addYTextLabel(200, "200");
-		mRenderer.addYTextLabel(250, "250");
-		mRenderer.addYTextLabel(300, "300");
-		mRenderer.addYTextLabel(350, "350");
-		mRenderer.addYTextLabel(400, "400");
-		mRenderer.addYTextLabel(450, "450");
-		mRenderer.addYTextLabel(500, "500");
 		
-		mRenderer.setBarSpacing(0.8);
+		mRenderer.setShowGridY(true);
+		mRenderer.setYLabels(5);
+		mRenderer.setYLabelsColor(0, Class_Color.BLACK());
+		mRenderer.setYLabelsAngle(300);
+		mRenderer.addYTextLabel(2500, "2,500");
+		mRenderer.addYTextLabel(5000, "5,000");
+		mRenderer.addYTextLabel(7500, "7,500");
+		mRenderer.addYTextLabel(10000, "10,000");
+		mRenderer.addYTextLabel(12500, "12,500");
+		mRenderer.addYTextLabel(15000, "15,000");
+		mRenderer.addYTextLabel(17500, "17,500");
+		mRenderer.addYTextLabel(20000, "20,000");
+		mRenderer.addYTextLabel(22500, "22,500");
+		mRenderer.addYTextLabel(25000, "25,000");
+		mRenderer.addYTextLabel(27500, "27,500");
+		mRenderer.addYTextLabel(30000, "30,000");
+		mRenderer.addYTextLabel(32500, "32,500");
+		mRenderer.addYTextLabel(35000, "35,000");
+		mRenderer.addYTextLabel(37500, "37,500");
+		mRenderer.addYTextLabel(40000, "40,000");
+		mRenderer.addYTextLabel(42500, "42,500");
+		mRenderer.addYTextLabel(45000, "45,000");
+		mRenderer.addYTextLabel(47500, "47,500");
+		mRenderer.addYTextLabel(50000, "50,000");
+		mRenderer.addYTextLabel(52500, "52,500");
+		
+		mRenderer.setBarSpacing(0.7);
 		mRenderer.setXAxisMin(0.5);
-		mRenderer.setXAxisMax(12.5);
+		mRenderer.setXAxisMax(12.8);
 		mRenderer.setYAxisMin(0);
-		mRenderer.setYAxisMax(300);
+		mRenderer.setYAxisMax(20000);
 		
 		//mRenderer.setPointSize(1.0f);
 	    mRenderer.addSeriesRenderer(mCurrentRenderer);
@@ -153,8 +166,8 @@ public class Chart1 extends Activity {
 		mCurrentSeries.add(12,80);
 	}
 	
-	int widthPixels;
-	int heightPixels;
+	private int widthPixels;
+	private int heightPixels;
 	private void InfoDisplay(){
 		int screenLayout = getResources().getConfiguration().screenLayout;
 		// Get the metrics
@@ -173,36 +186,34 @@ public class Chart1 extends Activity {
 	}
 	
 	
-	Thread1 t1;
+	private Thread1 t1;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chart1);
-		if(COUNT == 0){
-			t1 = new Thread1(mHandler);
-			t1.start();
-		}
+		t1 = new Thread1(mHandler);
+		t1.start();
 	}
-	Handler mHandler = new Handler() {
+	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
-			if(COUNT >= 20){
-				mCurrentRenderer.setColor(Color.rgb(255, 0, 0)); // * RED
+			if(Constant.COUNT >= 7500){
+				//mCurrentRenderer.setColor(Color.rgb(255, 0, 0)); // * RED
+				mCurrentRenderer.setColor(Class_Color.RED()); // * RED
 			}
 			// *error* mCurrentSeries.add(1,COUNT); 이렇게 하나만 해도, 나머지 값이 다 COUNT로 바뀐다
-			mCurrentSeries.add(1,COUNT);
-			mCurrentSeries.add(2,COUNT+1);
-			mCurrentSeries.add(3,COUNT+2);
-			mCurrentSeries.add(4,COUNT+3);
-			mCurrentSeries.add(5,COUNT+4);
-			mCurrentSeries.add(6,COUNT+5);
-			mCurrentSeries.add(7,COUNT+6);
-			mCurrentSeries.add(8,COUNT+7);
-			mCurrentSeries.add(9,COUNT+8);
-			mCurrentSeries.add(10,COUNT+9);
-			mCurrentSeries.add(11,COUNT+10);
-			mCurrentSeries.add(12,COUNT+11);
-			Log.d("SON", ""+COUNT);
-			if(mChart != null) mChart.repaint(); // *
+			mCurrentSeries.add(1,Constant.COUNT);
+			mCurrentSeries.add(2,Constant.COUNT+500);
+			mCurrentSeries.add(3,Constant.COUNT+200);
+			mCurrentSeries.add(4,Constant.COUNT+1300);
+			mCurrentSeries.add(5,Constant.COUNT+400);
+			mCurrentSeries.add(6,Constant.COUNT);
+			mCurrentSeries.add(7,Constant.COUNT+2600);
+			mCurrentSeries.add(8,Constant.COUNT+1700);
+			mCurrentSeries.add(9,Constant.COUNT+800);
+			mCurrentSeries.add(10,Constant.COUNT+100);
+			mCurrentSeries.add(11,Constant.COUNT+3000);
+			mCurrentSeries.add(12,Constant.COUNT+1100);
+			if(mChart != null) mChart.repaint();
 		}
 	};
 	
@@ -212,7 +223,6 @@ public class Chart1 extends Activity {
 		// * Study about "onResume()"
 		super.onResume();
 		LinearLayout layout = (LinearLayout)findViewById(R.id.chart1);
-		Log.d("SON", "" + mChart);
 		if(mChart == null){
 			InfoDisplay();
 			initChart();
@@ -221,7 +231,7 @@ public class Chart1 extends Activity {
 			mChart = ChartFactory.getBarChartView(this, mDataset, mRenderer, Type.DEFAULT);
 			layout.addView(mChart);
 		} else{
-			mChart.repaint();
+			//mChart.repaint();
 		}
 	}
 }
