@@ -37,7 +37,7 @@
             android:label="@string/title_activity_chart3" >
         </activity>
         <activity
-            android:name=".Chart_total"
+            android:name="son.funkydj3.achartengine.Chart_total"
             android:label="@string/title_activity_chart_total" >
         </activity>
     </application>
