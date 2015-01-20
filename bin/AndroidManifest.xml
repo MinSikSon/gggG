@@ -27,6 +27,14 @@
             android:name="son.funkydj3.achartengine.Chart1"
             android:label="@string/title_activity_chart1" >
         </activity>
+        <activity
+            android:name="son.funkydj3.achartengine.Chart2"
+            android:label="@string/title_activity_chart2" >
+        </activity>
+        <activity
+            android:name="son.funkydj3.achartengine.Chart_total"
+            android:label="@string/title_activity_chart_total" >
+        </activity>
     </application>
 
 </manifest>
